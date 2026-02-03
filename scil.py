@@ -180,56 +180,26 @@ def load_arr(d):
         t_drift = [4000]
 
     if 'kdd' in params_env['data_source']:
-        df = pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\kdd_multiclass_novel_ori_onehot.csv')
+        df = pd.read_csv(r'dir_kdd.csv')
     if 'vicon' in params_env['data_source']:
-        # df = pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\vib_multiclass_seq_point_rep_2drift_unscaled_novel_ori.csv')
-        #2percent
-        # df = pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\vib_gradual_2drift.csv')
-        # 5percent
-        # df = pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\vib_gradual_2drift_5percent.csv')
-        # 10percent
-        df = pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\vib_gradual_2drift_10percent.csv')
+        df = pd.read_csv(r'dir_vib.csv')
     if 'blob' in params_env['data_source']:
-        # df = pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\blob_mulincr_arr.csv')
-        #2percent
-        df= pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\blobs_6class_arr_drift.csv')
-        # 5percent
-        # df= pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\blobs_6class_arr_drift_5percent.csv')
-        # 10percent
-        # df= pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\blobs_6class_arr_drift_10percent.csv')
+        df = pd.read_csv(r'dir_blob.csv')
 
     if 'forescon' in params_env['data_source']:
-        # df = pd.read_csv(r"C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\forest_multiclass_seq_point_drift_novel_ori.csv")
-        #2percent
-        df = pd.read_csv(r"C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\forest_gradual_2drift.csv")
-        #5percent
-        # df = pd.read_csv(
-        #     r"C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\forest_gradual_2drift_5percent.csv")
-        #10percent
-        # df = pd.read_csv(
-        #     r"C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\forest_gradual_2drift_10percent.csv")
-
+        df = pd.read_csv(r"dir_forest.csv")
 
     if 'shuttle' in params_env['data_source']:
         df = pd.read_csv(
-            r"C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\shuttle\shuttle_online.csv")
+            r"dir_shuttle.csv")
         t_drift = [100000]
     if 'sea_con' in params_env['data_source']:
-        df = pd.read_csv(r"C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\sea_mulincr_arr.csv")
+        df = pd.read_csv(r"dir_sea.csv")
     if 'mniscon' in params_env['data_source']:
-        # df = pd.read_csv(r"C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\mnist01_multiclass_seq_point_novel_ori.csv")
-        df=pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\mnist01_multiclass_allclass.csv')
+        df=pd.read_csv(r'dir_mnist.csv')
         t_drift = [2500]
     if 'sensorless' in params_env['data_source']:
-        #2percent
-        # df=pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\sensorless\sensorless_arr_2percent.csv')
-
-        # #4 percent
-        df=pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\sensorless\sensorless_arr.csv')
-        #
-        # #10 percent
-        # df=pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\sensorless\sensorless_arr_10percent.csv')
-
+        df=pd.read_csv(r'dir_sensor.csv')
         t_drift = [2500]
     data_init_unlabelled = df.iloc[:2000, :].drop('class', axis=1).to_numpy()
 
@@ -239,60 +209,57 @@ def load_arr(d):
 def pretrain_aemlp_mulincr(d):
     set_seed(42)
     if 'vicon' in params_env['data_source']:
-        df_train = pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\vib_offline_clf.csv')
+        df_train = pd.read_csv(r'dir_vib_offline.csv')
         input_dim = 10  # Input dimension
         latent_dim = 2
         A = 40
         B = 1
 
     if 'blob' in params_env['data_source']:
-        # df_train = pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\blob_offline_clf.csv')
-        df_train=pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\blobs_6class_offline.csv')
+        df_train = pd.read_csv(r'dir_blob_offline.csv')
         input_dim = 3  # Input dimension
         latent_dim = 2
         A = 300
         B = 5
     if 'forescon' in params_env['data_source']:
-        df_train = pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\forest_offline_clf.csv')#
-        ###plot input and embed
-        # df_train = pd.read_csv('sampled_shuffled_data.csv')
+        df_train = pd.read_csv(r'dir_forest_offline_clf.csv')#
         input_dim = 52 # Input dimension
         latent_dim = 20
         A = 0.1
         B = 1
     if 'sensorless' in params_env['data_source']:
-        df_train = pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\sensorless\sensorless_offline.csv')#
+        df_train = pd.read_csv(r'dir_sensorless_offline.csv')#
         input_dim = 48 # Input dimension
         latent_dim = 20
         A = 0.1
         B = 1
     if 'shuttle' in params_env['data_source']:
-        df_train = pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\shuttle\shuttle_offline.csv')#
+        df_train = pd.read_csv(r'dir_shuttle_offline.csv')#
         input_dim = 9 # Input dimension
         latent_dim = 2
         A = 200000
         B = 1
 
     if 'sea_con' in params_env['data_source']:
-        df_train = pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\sea_offline_clf.csv')
+        df_train = pd.read_csv(r'dir_sea_offline.csv')
         input_dim = 2 # Input dimension
         latent_dim = 2
         A = 20
         B = 2
     if 'mniscon' in params_env['data_source']:
-        df_train = pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\mnist_offline_clf.csv')
+        df_train = pd.read_csv(r'dir_mnist_offline.csv')
         input_dim = 784 # Input dimension
         latent_dim = 20
         A = 0.1
         B = 1
     if 'kdd' in params_env['data_source']:
-        df_train = pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\con2\kdd_offline_clf.csv')
+        df_train = pd.read_csv(r'dir_kdd_offline.csv')
         input_dim = 116  # Input dimension
         latent_dim = 20
         A = 0.3
         B = 1
     if 'water' in params_env['data_source']:
-        df_train = pd.read_csv(r'C:\Users\jli00001\OneDrive - University of Cyprus\Desktop\online learning\2nd conference papar\VAE4AS\data\water_network\water_conta_ref.csv')
+        df_train = pd.read_csv(r'dir_water_offline.csv')
         input_dim = 1  # Input dimension
         latent_dim = 2
         A = 10
@@ -2856,4 +2823,5 @@ for ds in datasets:
     filename = f"{params_env['data_source']}_{params_env['ae']}_{params_env['method']}_{params_env['correc']}_pred.txt"
     with open(filename, 'w') as f:
         for item in pred_final:
+
             f.write(f"{item}\n")
