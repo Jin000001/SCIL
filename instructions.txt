@@ -1,1 +1,48 @@
 
+To execute the script:scil.py
+parameter setting:
+'strategy': 
+    'mulclass' (multi-class incremental learning framework)
+
+'method': 
+    'clf' (AE + MLP classifier),
+    'iforest' (Isolation Forest),
+    'lof' (Local Outlier Factor)
+
+'data_source': 
+    dataset name 
+    e.g., 'blob_drift', 'sea_con_drift', 'forescon_drift', 
+          'kdd_drift', 'water_drift', 'shuttle'
+
+'repeats': 
+    number of repeated runs
+
+'unsupervised_win_size': 
+    reference window size (number of samples used for initialization and update)
+
+'unsupervised_win_size_update': 
+    multiplier controlling update interval;
+    actual update_time = unsupervised_win_size × unsupervised_win_size_update
+
+'com': 
+    reconstruction/classification loss weighting:
+    '28' → 0.2 * recon_loss + 0.8 * clf_loss
+    '55' → 0.5 * recon_loss + 0.5 * clf_loss
+    '82' → 0.8 * recon_loss + 0.2 * clf_loss
+
+'ae': 
+    'aemlp' (encoder embedding + classifier),
+    'noembed' (classifier directly on input),
+    'baseline' (no embedding-based correction)
+
+'ind': 
+    'mulincr' (multi-class incremental learning),
+    'noupsampling' (disable oversampling during retraining)
+
+'correc': 
+    'true' (enable density-adaptive filtering + robust center correction before SMOTE),
+    otherwise (standard SMOTE without correction)
+
+'adaptive': 
+    'yes' / 'no',
+    whether anomaly detection thresholds are adaptively updated
